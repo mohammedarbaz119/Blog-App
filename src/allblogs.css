@@ -1,0 +1,38 @@
+*{
+    box-sizing: border-box;
+}
+.load{
+    color: blue;
+}
+.error{
+    translate: 400px 100px;
+    font-size: 20px;
+    color: red;
+}
+.theb{
+    display: flex;
+    flex-wrap: wrap;
+    width: 70vw;
+   
+    height: fit-content;
+    translate: 30% 10%;
+}
+.blog{
+    background-color: black;
+    color: azure;
+    margin: 30px; 
+    height: 400px;
+    width: 400px;
+    box-shadow: 10px 2px 4px 3px rgba(0, 0,0,.2);
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+img{
+object-fit: cover;
+width: 300px;
+height: 200px;
+
+}

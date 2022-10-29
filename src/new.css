@@ -1,0 +1,25 @@
+*{
+    box-sizing: border-box;
+    margin: 0%;
+    padding: 0%;
+}
+.Main{
+    background-color: #21222A;
+    display: flex;
+    height: 70px;
+    align-items: center;
+   
+}
+.Main .links{
+margin-left: auto;
+}
+.links a{
+    text-decoration: none;
+}
+.new button{
+    font-size:20px;
+    margin-right: 10px;
+}
+.new{
+    transform: translate(300px,130px);
+}

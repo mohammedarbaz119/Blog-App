@@ -1,0 +1,39 @@
+*{
+  box-sizing: border-box;  
+}
+.crete{
+    translate: 600px 100px;
+    height: max-content;
+    width: 400px;
+    display:flex;
+    
+}
+
+.crete label{
+    display: block;
+    font-size: 35px;
+    color: wheat;
+}
+input[type=text]{
+  font-size: 20px;
+  width: 400px;
+  padding: 5px;
+  border-radius: 5px;
+}
+textarea{
+  font-size: 20px;
+  height: 80px;
+  width: 400px;
+padding: 10px;
+border-radius: 5px;
+  
+}
+input[type=submit]{
+  border-radius: 10px;
+  font-size: 25px;
+  color: bisque;
+  background-color: red;
+  border:2px solid red ;
+  padding: 10px;
+translate: 120px 30px;
+}
