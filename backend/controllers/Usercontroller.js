@@ -23,11 +23,11 @@ async function Register(req,res){
     try{
     const {data} = req.body
     const userf = await User.checkreg(data.username,data.pass)
-    
+    console.log(userf)
     res.json(userf)
 }
     catch(err){
-        res.send(err)
+        res.status(400).json({error:err.message})
     }
     // console.log({username,pass})
     // res.json({username,pass})

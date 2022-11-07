@@ -1,6 +1,5 @@
 const mongoose = require('mongoose')
 const bcrypt= require('bcrypt')
-const validator = require('validator')
 const User= new mongoose.Schema({
     username:{
         type:String,
@@ -15,13 +14,9 @@ const User= new mongoose.Schema({
     
 })
 User.statics.checkreg = async function(user1,pass){
-    console.log(user1,pass)
-if(!user1||!pass){
-    throw Error('all fields should be filled')
+if(user1===''||pass===''){
+    throw new Error('all fields should be filled')
 }
-if (!validator.isStrongPassword(pass)) {
-    throw Error('Password not strong enough')
-  }
 
 
 
