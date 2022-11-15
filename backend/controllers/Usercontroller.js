@@ -1,8 +1,9 @@
 const User = require("../schemas/User")
 const jwt = require('jsonwebtoken')
-require('dotenv').config({path:'../.env'});
+require('dotenv').config();
+
 const createToken = (_id) => {
-    return jwt.sign({_id},process.env.SECRET,{expiresIn:'3d'})
+    return jwt.sign({_id},process.env.SECRET_CODE,{expiresIn:'3d'})
 }
 async function LoginUser(req, res) {
 
