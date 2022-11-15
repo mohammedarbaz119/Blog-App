@@ -1,5 +1,6 @@
 const express = require('express')
 let cors = require('cors')
+require('dotenv').config({path:'./.env'});
 const mongoose = require('mongoose')
 mongoose.connect("mongodb://localhost:27017/arbaz")
 const Blog = require('./schemas/blog')
@@ -46,7 +47,7 @@ app.post('/blog/new',async(req,res)=>{
     const newBlog = new Blog({name:blog.name,body:blog.body,author:blog.author})
 try{
     const result = await newBlog.save()
-return res.status(200).send("Blog saved to DB")
+return res.status(200).json({success:"Blog saved to DB"})
 }
 catch(err){
     res.status(400).send("cant save to DB")

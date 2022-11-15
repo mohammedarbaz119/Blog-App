@@ -17,11 +17,11 @@ User.statics.checkreg = async function(user1,pass){
 if(user1===''||pass===''){
     throw new Error('all fields should be filled')
 }
+console.log(`${user1},${pass}`)
 
 
-
-    const exists = await this.findOne({user1})
-    if(exists){
+    const exists = await this.findOne({username:user1})
+        if(exists!=null){
         throw Error("user already exists")
     }
     const salt = await bcrypt.genSalt(10)
