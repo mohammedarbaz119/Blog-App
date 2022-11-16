@@ -31,6 +31,7 @@ async function Register(req, res) {
         const { data } = req.body
         const userf = await User.checkreg(data.username, data.pass)
         const token = createToken(userf._id)
+        console.log(userf._id)
         return res.status(200).json({username:data.username,token})
     }
     catch (err) {
