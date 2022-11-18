@@ -34,7 +34,7 @@ async function Register(req, res) {
         return res.status(200).json({username:data.username,token})
     }
     catch (err) {
-        res.status(400).json({ error: err.message })
+        res.json({ error: err.message }).status(400)
     }
     // console.log({username,pass})
     // res.json({username,pass})
