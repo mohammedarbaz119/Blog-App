@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useContext, useState } from 'react'
+import React, {  useState } from 'react'
 import { useNavigate } from 'react-router'
 import { Link } from 'react-router-dom'
 import style from './login.css'
@@ -8,7 +8,6 @@ import { Usercontext, useUsercontext } from './Usercontext'
 export default function Register() {
   const [err,seterr] = useState(null)
   const {state,dispatch} = useUsercontext()
-  console.log(state,dispatch)
  const nav=useNavigate()
  const [formdata,setdta] = useState({
   username:"",
@@ -32,11 +31,14 @@ export default function Register() {
         axios.post('http://localhost:4000/user/register',{
         data
       }).then(res=>{if(res.status!==200){
-        seterr(res.data.err)
+        seterr(res.data.error)
+        console.log(res.data)
       }
        else{ seterr(null)
-        dispatch({type:"LOGIN"})
-      nav('/')}}).catch(e=>seterr(e))
+  
+        dispatch({type:"LOGIN",payload:res.data})
+        console.log(res.data)
+      nav('/')}}).catch(e=>seterr(e.message))
       // console.log(data)
     }}>
     <label className='il'>Username</label>

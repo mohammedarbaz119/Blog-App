@@ -36,7 +36,7 @@ useEffect(()=>{
   let a = JSON.parse(localStorage.getItem(localStoragekey))
   setskills(a)
 },[]) 
-
+console.log(state)
 
   const handlenameclick=()=>{
     setname("ibrahim")
@@ -52,7 +52,6 @@ const addtheinp=()=>{
   }
   setskills(prev=>[...prev,value])
 }
- console.log(product)
   return (
 <div className='home'>     <h1 className='homeh1'>Welcome To The Blog app</h1>
 <button  onClick={handleclcik}>{state}</button>

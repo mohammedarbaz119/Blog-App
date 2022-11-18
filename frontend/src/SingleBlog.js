@@ -16,54 +16,54 @@ export default function SingleBlog() {
       let c;
       switch(m){
         case 1:
-          c='jan';
+          c='Janruary';
           break;
         case 2:
-          c='feb';
+          c='Febuary';
           break;
         case 3:
-          c='mar';
+          c='March';
           break;
         case 4:
-          c='april';
+          c='April';
           break;
         case 5:
-          c='may';
+          c='May';
           break;
         case 6:
-          c='june';
+          c='June';
           break;
         case 7:
-          c='july';
+          c='July';
           break;
         case 8:
-          c='aug';
+          c='August';
           break;
         case 9:
-          c="sep";
+          c="September";
           break;
         case 10:
-          c="oct"
+          c="October"
           break;
         case 11:
-          c="nov"
+          c="November"
           break;
         case 12:
-          c='dec'
+          c='December'
           break;
       }
 return `${da}-${c}-${y} ${hr}:${min}`
     }
   return (
     <>
-    {isload&&<div>loading...</div>}
-        {error&&<div>{error}</div>}
+        {error&&
+        <h1 style={{color:'red',fontSize:'30px',translate:'400px'}}> no blogs at the moment maybe some fetch error</h1>}
         {data?data.map(l=>(<div className='clog'>
         <h1 key={l.id}>{l.name}</h1>
         <h3 key={l.id} className='data' style={{fontSize:'30px'}}>{getdate(l.id)}</h3>
         <h1 key={l.id}>Written by {l.author}</h1>
 <p key={l.id}>{l.body}</p>
-</div>)):<h1 style={{color:'red',fontSize:'30px',translate:'400px'}}> no blogs at the moment maybe some fetch error</h1>}
+</div>)):<div>loading...</div>}
     </>
   )
 }
