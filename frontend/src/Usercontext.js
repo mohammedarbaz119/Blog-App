@@ -19,7 +19,7 @@ case "LOGIN":
             return state
     }
 }
-const [state,dispatch] = useReducer(reduce,null)
+const [state,dispatch] = useReducer(reduce,JSON.parse(localStorage.getItem("user"))||null)
   return (
     <Userkcontext.Provider value={{state,dispatch}}>
         {children}
