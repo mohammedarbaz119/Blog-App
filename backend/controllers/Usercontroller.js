@@ -10,16 +10,15 @@ async function LoginUser(req, res) {
     try {
         const { data } = req.body
         // console.log({user:data.username,pass:data.pass})
-        const user = await User.findOne({ username: data.username, password: data.pass })
+                
+const user =await  User.Checklog(data.username,data.pass)
         if (user) {
-            res.json(user)
-        }
-        else {
-            res.json({ message: "invalid creds" })
-        }
+const token  = createToken(user._id)
+res.status(200).json({username:data.username,token})
+    }
     }
     catch (err) {
-        res.send(err)
+        res.status(400).json({err:err.message})
     }
 
 

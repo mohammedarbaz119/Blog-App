@@ -6,10 +6,9 @@ import './home.css'
 
 import useFecth from './useFecth'
 import Products2 from './Products2'
-import { Usercontext } from './Usercontext'
 
 export default function Home() {
-  const {user,setuser} = useContext(Usercontext)
+ 
   const [state,setstate] = useState(0)
   const [name,setname] = useState("arbaz")
 const {product,error,load} = useFecth('http://localhost:4000/products')
@@ -64,7 +63,7 @@ removeblog={removeblog}/>
 <Bloglist skills={blogs.filter(l=>l.author==="mario")} title={"mario blogs"} removeblog={removeblog}/>
 <input type={'text'} style={{fontSize:'20px',border:'1px solid black'}} ref={todo}></input>
 <button type='submit' onClick={addtheinp}>submit</button>
-{user!==null?<h1>{user}</h1>:<></>}
+{/* {user!==null?<h1>{user}</h1>:<></>} */}
 {/* <Footer links={links}/> */}
 {error&&<div>{error}</div>}
 {load&&<div>...loading</div>}

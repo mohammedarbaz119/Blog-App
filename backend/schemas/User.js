@@ -17,7 +17,7 @@ User.statics.checkreg = async function(user1,pass){
 if(user1===''||pass===''){
     throw new Error('all fields should be filled')
 }
-console.log(`${user1},${pass}`)
+
 
 
     const exists = await this.findOne({username:user1})
@@ -33,4 +33,20 @@ console.log(`${user1},${pass}`)
   return user
 
 }
+User.statics.Checklog= async function(username,password){
+   
+    if(username===''||password===''){
+        throw Error("fields cant be empty")
+    }
+    const user = await this.findOne({username:username})
+    if(user==null){
+     throw Error("user doesnt exist please register first")
+    }
+   console.log(username)
+   const check = await bcrypt.compare(password,user.password)
+   if(!check){
+    throw Error("invalid creds")
+   }
+    return user
+} 
 module.exports=mongoose.model('User',User)

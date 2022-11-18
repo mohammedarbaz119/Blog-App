@@ -3,10 +3,10 @@ import React, { useContext, useState } from 'react'
 import { useNavigate} from 'react-router'
 import { Link } from 'react-router-dom'
 import style from './login.css'
-import { Usercontext } from './Usercontext'
+
 
 export default function Login() {
-  const {user,setuser} = useContext(Usercontext)
+
  const nav=useNavigate()
  const [formdata,setdta] = useState({
   username:"",
@@ -29,7 +29,7 @@ export default function Login() {
       const data = {username:formdata.username,pass:formdata.pass}
         axios.post('http://localhost:4000/user/login',{
         data
-      }).then(res=>{if(res) {setuser(res.data.username)
+      }).then(res=>{if(res) {
         nav('/')
         
       }

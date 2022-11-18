@@ -13,21 +13,14 @@ import NewBlog from './NewBlog';
 import Allblogs from './Allblogs';
 import SingleBlog from './SingleBlog';
 import Register from './Register';
-import { Usercontext } from './Usercontext';
-// const person={
-//     name:"arbaz",
-//     age:20,
-//     skills:["html","css","js"]
-// }
 
-// const link = "http://google.com"
 function App() {
     const [user,setuser]=useState(null)
  return (
 
     <div>
        
-    <Usercontext.Provider value={{user,setuser}}>
+    
     <Navbar/>
     <Routes>
         <Route path={'/'} element={<Home/>}/>
@@ -45,7 +38,7 @@ function App() {
         <Route path={'blog/new'} element={<NewBlog/>}/>
         <Route path='*' element={<Notfound/>}/>
     </Routes>
-    </Usercontext.Provider>
+   
     {/* <Routes>
         <Route path='/products' element={<h1>extra</h1>}>
         </Route>

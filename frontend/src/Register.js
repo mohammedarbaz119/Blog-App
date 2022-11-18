@@ -3,10 +3,12 @@ import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router'
 import { Link } from 'react-router-dom'
 import style from './login.css'
-import { Usercontext } from './Usercontext'
+import { Usercontext, useUsercontext } from './Usercontext'
 
 export default function Register() {
-  const {user,setuser} = useContext(Usercontext)
+  const [err,seterr] = useState(null)
+  const {state,dispatch} = useUsercontext()
+  console.log(state,dispatch)
  const nav=useNavigate()
  const [formdata,setdta] = useState({
   username:"",
@@ -29,8 +31,12 @@ export default function Register() {
       const data = {username:formdata.username,pass:formdata.pass}
         axios.post('http://localhost:4000/user/register',{
         data
-      }).then(res=>{setuser(res.data.username)
-      nav('/')}).catch(e=>console.log(e))
+      }).then(res=>{if(res.status!==200){
+        seterr(res.data.err)
+      }
+       else{ seterr(null)
+        dispatch({type:"LOGIN"})
+      nav('/')}}).catch(e=>seterr(e))
       // console.log(data)
     }}>
     <label className='il'>Username</label>
@@ -39,6 +45,7 @@ export default function Register() {
       <input className='ip' type={'password'} value={formdata.pass} name='pass' onChange={(e)=>handch(e)}></input>
       <input className='is' type={'submit'} value={'submit'} />
       <h3 style={{translate:'10px 50px'}}>Already have an account?<Link to={'/login'}>Login</Link></h3>
+      {err&&<h2 className='err'>{err}</h2>}
       </form>
      
     </div>
