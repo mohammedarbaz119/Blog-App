@@ -6,8 +6,7 @@ body{
     background-color: #282D35;
 }
 .home{
-    position: relative;
-    left: 35%;
+    translate:35%;
 }
 .homeh1{
     color: #000;

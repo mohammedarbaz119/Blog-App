@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const bcrypt= require('bcrypt')
-const User= new mongoose.Schema({
+const Blog = require('./blog')
+const User=new mongoose.Schema({
     username:{
         type:String,
         required:true,
@@ -9,10 +10,12 @@ const User= new mongoose.Schema({
     password:{
         type:String,
         required:true
-    }
-    
-    
+    },
+    posts:[{type:mongoose.Schema.Types.ObjectId,ref:'Blog',autopopulate:true}],
+    followers:[{type:mongoose.Schema.Types.ObjectId,ref:'User',autopopulate:true}]
 })
+
+User.plugin(require('mongoose-autopopulate'))
 User.statics.checkreg = async function(user1,pass){
 if(user1===''||pass===''){
     throw new Error('all fields should be filled')

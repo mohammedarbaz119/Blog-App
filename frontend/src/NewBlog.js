@@ -2,11 +2,11 @@ import axios from 'axios'
 import React, { useState } from 'react'
 import './newblog.css'
 import { useNavigate } from 'react-router'
-
 export default function NewBlog() {
- const [nameval,setnameval] =useState('')
+ const [title,setnameval] =useState('')
  const [body,setbody]=useState('')
- const [author,setauthor]=useState('')
+ const [err,seterr] = useState('')
+ const [author,setauthor]=useState(JSON.parse(localStorage.getItem('user'))?JSON.parse(localStorage.getItem('user')).username:"")
 
  const nav = useNavigate()
   return (<>
@@ -14,24 +14,25 @@ export default function NewBlog() {
     <div className='crete'>
       
       <form onSubmit={(e)=>{e.preventDefault()
-      const blog = {name:nameval,body,author}
+      const blog = {title:title,body,author}
       console.log(blog)
       axios.post('http://localhost:4000/blog/new',{
         blog
-      }).then(res=>{console.log(res)
-      nav('/')}).catch(err=>console.log(err))
+      }).then(res=>{console.log(res.data)
+      nav('/')}).catch(err=>{
+      console.log(err)})
       }}>
-      <label>Name</label>
+      <label>title</label>
       <input autoComplete='true' type={'text'}
-      value={nameval}
+      value={title}
       onChange={(e)=>setnameval(e.target.value)}/>
       <label>details</label>
       <textarea required  autoComplete='true' value={body} onChange={(e)=>setbody(e.target.value)}></textarea>
-      <label>author</label>
-<input type={'text'} autoComplete='true' required value={author} onChange={(e)=>setauthor(e.target.value)}/>
 <input type={'submit'} value={'Add a Blog'}/>
       </form>
+      
     </div>
+    {err&&<h1 style={{color:'red'}}>{err}</h1>}
     </>
   )
 }

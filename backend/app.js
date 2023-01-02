@@ -44,10 +44,27 @@ app.get('/products/:id',(req,res)=>{
 app.use('/user',userRouter)
 app.post('/blog/new',async(req,res)=>{
     const {blog} = req.body
-    const newBlog = new Blog({name:blog.name,body:blog.body,author:blog.author})
+   
 try{
+
+    const authorid = await User.findOne({username:blog.author}).select('_id')
+    const newBlog = new Blog({title:blog.title,body:blog.body,poster:authorid})
+    console.log(newBlog)
+  
     const result = await newBlog.save()
-return res.status(200).json({success:"Blog saved to DB"})
+    await Blog.findOne({poster:authorid}).populate('poster').exec((err,res)=>{
+        if(err){
+         console.log(err.stack)
+        }
+        else{
+            console.log(res)
+        }
+
+    })
+    // if(!newBlog.populated('users')){
+    //     newBlog.populate('users').catch(e=>res.json({err:"cant populate"}))
+    // }
+    return res.status(200).json({success:"Blog saved to DB"})
 }
 catch(err){
     res.status(400).send("cant save to DB")

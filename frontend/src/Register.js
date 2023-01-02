@@ -37,8 +37,6 @@ export default function Register() {
        else{ seterr(null)
   
         dispatch({type:"LOGIN",payload:res.data})
-        localStorage.setItem("user",JSON.stringify(res.data))
-        console.log(res.data)
       nav('/')}}).catch(e=>seterr(e.message))
       // console.log(data)
     }}>

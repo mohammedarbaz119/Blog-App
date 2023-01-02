@@ -1,14 +1,20 @@
 const mongoose = require('mongoose')
+const User = require('./User')
+let count =0;
 const Blog = new mongoose.Schema(
     {
-        username:String,
         id:{
             type:Date,
-            default:()=>Date.now()
+            default:()=>new Date()
         },
-        name:String,
+        title:String,
         body:String,
-        author:String
+        poster:{
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'User',
+            autopopulate: true
+        }
     }
 )
+Blog.plugin(require('mongoose-autopopulate'))
 module.exports=mongoose.model('Blog',Blog)

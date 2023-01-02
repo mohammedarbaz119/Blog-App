@@ -38,9 +38,8 @@ export default function Login() {
        else{ seterr(null)
   
         dispatch({type:"LOGIN",payload:res.data})
-        localStorage.setItem("user",JSON.stringify(res.data))
-        console.log(res.data)
-      nav('/')}}).catch(e=>seterr(e.message))
+        nav('/')
+}}).catch(e=>seterr(e.message))
     }}>
     <label className='il'>Username</label>
       <input className='ie' style={style.ie}type={'text'} value={formdata.username} name='username' onChange={(e)=>handch(e)}></input>

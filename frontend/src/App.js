@@ -3,7 +3,7 @@ import './'
 import './App.css';
 import Home from './Home';
 import Navbar from './Navbar';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Login from './Login';
 import Products from './Products';
 import Product from "./Product";
@@ -13,9 +13,11 @@ import NewBlog from './NewBlog';
 import Allblogs from './Allblogs';
 import SingleBlog from './SingleBlog';
 import Register from './Register';
+import { useUsercontext } from './Usercontext';
 
 function App() {
-    const [user,setuser]=useState(null)
+    const {state,dispatch} = useUsercontext()
+ 
  return (
 
     <div>
