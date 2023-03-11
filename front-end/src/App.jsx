@@ -1,23 +1,18 @@
 import { Route, Routes } from 'react-router-dom';
-import './'
-import './App.css';
-import Home from './Home';
-import Navbar from './Navbar';
+import './css/App.css';
+import Home from './components/Home';
+import Navbar from './components/Navbar';
 import React, { useEffect, useState } from 'react';
-import Login from './Login';
-import Products from './Products';
-import Product from "./Product";
-import Notfound from './Notfound';
-// import Pro from './Pro';
-import NewBlog from './NewBlog';
-import Allblogs from './Allblogs';
-import SingleBlog from './SingleBlog';
-import Register from './Register';
-import { useUsercontext } from './Usercontext';
+import Login from './components/Login';
+import Notfound from './components/Notfound';
+import NewBlog from './components/NewBlog';
+import Allblogs from './components/Allblogs';
+import SingleBlog from './components/SingleBlog';
+import Register from './components/Register';
+import { useUsercontext } from './context/Usercontext';
 
 function App() {
     const {state,dispatch} = useUsercontext()
- 
  return (
 
     <div>
@@ -26,13 +21,10 @@ function App() {
     <Navbar/>
     <Routes>
         <Route path={'/'} element={<Home/>}/>
-        <Route path='login' element={<Login/>}/>
+        <Route path='/login' element={<Login/>}/>
         <Route path='/register' index element={<Register/>}/>
         {/* <Home/> */}
-        <Route path='products'>
-            <Route index element={<Products/>}/>
-            <Route path=':id' element={<Product/>}/>
-        </Route>
+
         <Route path='/blogs' >
             <Route index element={<Allblogs/>}/>
             <Route path=':id' element={<SingleBlog/>}/>

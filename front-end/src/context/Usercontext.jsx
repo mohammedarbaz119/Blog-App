@@ -1,5 +1,7 @@
 import { Children, createContext, useContext, useReducer } from "react";
 import React from "react";
+import { useEffect } from "react";
+import { json } from "react-router-dom";
 export const Userkcontext = createContext(null)
 
 export default function Usercontext({children}) {
@@ -13,15 +15,17 @@ case "LOGIN":
     case "LOGOUT":{
         localStorage.setItem("user",null)
         return null
-          
-        
-
         }
         default:
             return state
     }
 }
-const [state,dispatch] = useReducer(reduce,JSON.parse(localStorage.getItem("user"))||null)
+let user 
+useEffect(()=>{
+  user= JSON.parse(localStorage.getItem('user'))
+  },[])
+const [state,dispatch] = useReducer(reduce,user)
+
   return (
     <Userkcontext.Provider value={{state,dispatch}}>
         {children}
@@ -32,7 +36,7 @@ const [state,dispatch] = useReducer(reduce,JSON.parse(localStorage.getItem("user
 export const useUsercontext = () => {
   const context = useContext(Userkcontext)
  if(!context){
-    throw Error("context nis not present")
+    throw Error("context is not present")
 
  }
  return context

@@ -2,17 +2,19 @@ const express = require('express')
 let cors = require('cors')
 require('dotenv').config({path:'./.env'});
 const mongoose = require('mongoose')
-mongoose.connect("mongodb://localhost:27017/arbaz")
+mongoose.connect("mongodb://127.0.0.1:27017/arbaz")
 const Blog = require('./schemas/blog')
 const User = require('./schemas/User')
 const userRouter = require('./Routes/Userrouter')
 const app = express()
+const Userauth = require('./controllers/authcontroller')
 app.use(cors())
 app.use(express.urlencoded({extended:false}))
 app.use(express.json())
 const connect = mongoose.connection
 
 if(connect){
+    console.log(connect)
     app.listen(4000,()=>{
         console.log("i run")
     })
@@ -42,7 +44,7 @@ app.get('/products/:id',(req,res)=>{
 //     console.log({user:data.username,pass:data.pass})
 // })
 app.use('/user',userRouter)
-app.post('/blog/new',async(req,res)=>{
+app.post('/blog/new',Userauth,async(req,res)=>{
     const {blog} = req.body
    
 try{

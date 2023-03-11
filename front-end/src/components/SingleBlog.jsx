@@ -1,6 +1,6 @@
 import { useParams } from "react-router"
 import React from "react"
-import useFecth from "./useFecth"
+import useFecth from "../custom_hooks/useFecth"
 
 
 export default function SingleBlog() {

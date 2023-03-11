@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import useFecth from './useFecth'
-import './allblogs.css'
-import th from './images/th.jpg'
+import useFecth from '../custom_hooks/useFecth'
+import '../css/allblogs.css'
+import th from '../images/th.jpg'
 
 export default function Allblogs() {
     const {product:data,isload,error}= useFecth(`http://localhost:4000/blogs`)
