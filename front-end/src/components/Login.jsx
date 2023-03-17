@@ -35,7 +35,7 @@ export default function Login() {
     <form className='if' onSubmit={(e)=>{
       e.preventDefault()
       const data = {username:formdata.username,pass:formdata.pass}
-        axios.post('http://192.168.0.147:4000/user/login',{
+        axios.post('http://127.0.0.1:4000/user/login',{
         data
       }).then(res=>{if(res.status!==200){
         seterr(res.data.error)
